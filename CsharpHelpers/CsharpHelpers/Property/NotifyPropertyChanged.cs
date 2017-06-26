@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using CsharpHelpers.Annotations;
 
-namespace CsharpHelpers.NotifyProperty
+namespace CsharpHelpers.Property
 {
     public class NotifyPropertyChanged : INotifyPropertyChanged
     {

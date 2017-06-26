@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace CsharpHelpers.Logging.MessageProviders
+namespace CsharpHelpers.MessageProvider
 {
     public class CsvProvider : IMessageProvider
     {

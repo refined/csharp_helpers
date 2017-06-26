@@ -1,4 +1,4 @@
-﻿using CsharpHelpers.Logging.MessageProviders;
+﻿using CsharpHelpers.MessageProvider;
 
 namespace CsharpHelpers.Logging
 {
@@ -16,9 +16,9 @@ namespace CsharpHelpers.Logging
             Provider.Add(message);
         }
 
-        public void AddMessage(string[] message)
+        public void AddMessage(string[] messages)
         {
-            Provider.Add(message);
+            Provider.Add(messages);
         }
 
         public void AddException(string message)

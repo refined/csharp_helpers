@@ -1,4 +1,4 @@
-namespace CsharpHelpers.Logging.MessageProviders
+﻿namespace CsharpHelpers.MessageProvider
 {
     public class LogCsvProvider : CsvProvider
     {

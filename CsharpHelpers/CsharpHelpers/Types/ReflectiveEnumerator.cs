@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CsharpHelpers
+namespace CsharpHelpers.Types
 {
     public static class ReflectiveEnumerator
     {

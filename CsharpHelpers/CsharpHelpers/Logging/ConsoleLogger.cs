@@ -1,4 +1,4 @@
-﻿using CsharpHelpers.Logging.MessageProviders;
+﻿using CsharpHelpers.MessageProvider;
 
 namespace CsharpHelpers.Logging
 {

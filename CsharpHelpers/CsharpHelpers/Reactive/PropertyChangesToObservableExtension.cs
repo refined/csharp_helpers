@@ -2,10 +2,11 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reactive.Linq;
+using CsharpHelpers.Property;
 
-namespace CsharpHelpers.NotifyProperty
+namespace CsharpHelpers.Reactive
 {
-    public static class NotifyExtension
+    public static class PropertyChangesToObservableExtension
     {
         /// <summary>
         /// Returns an observable sequence of the source any time the <c>PropertyChanged</c> event is raised.

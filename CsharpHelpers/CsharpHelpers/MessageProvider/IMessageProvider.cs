@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace CsharpHelpers.Logging.MessageProviders
+namespace CsharpHelpers.MessageProvider
 {
     public interface IMessageProvider
     {
         void Add(string message);
-        void Add(IEnumerable<string> operation);
+        void Add(IEnumerable<string> messages);
         void Clear();
     }
 }

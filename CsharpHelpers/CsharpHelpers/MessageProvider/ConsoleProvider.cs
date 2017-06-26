@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace CsharpHelpers.Logging.MessageProviders
+namespace CsharpHelpers.MessageProvider
 {
     public class ConsoleProvider : IMessageProvider
     {

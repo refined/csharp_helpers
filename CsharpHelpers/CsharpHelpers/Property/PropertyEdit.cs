@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using CsharpHelpers.NotifyProperty;
 
-namespace CsharpHelpers.Reflections
+namespace CsharpHelpers.Property
 {
     public class PropertyEdit : NotifyPropertyChanged
     {
@@ -13,7 +12,7 @@ namespace CsharpHelpers.Reflections
         public int Value
         {
             get { return (int)_propertyInfo.GetValue(_obj); }
-            set { _propertyInfo.SetValue(_obj, value); OnPropertyChanged(); }
+            set { _propertyInfo.SetValue(_obj, value); OnPropertyChanged();}
         }
 
         public PropertyEdit(PropertyInfo propertyInfo, object obj)
