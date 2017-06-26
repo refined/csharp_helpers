@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Novikov.CsharpHelpers</id>
-    <version>0.9</version>
+    <version>0.9.1</version>
     <title>Helpers and utils for C# developers</title>
     <authors>Fedor Novikov</authors>
     <owners>Fedor Novikov</owners>

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Helper.Extensions
+namespace CsharpHelpers.Collection
 {
     public class BindingListExt<T> : BindingList<T>
     {
