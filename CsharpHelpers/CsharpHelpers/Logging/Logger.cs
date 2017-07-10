@@ -11,7 +11,7 @@ namespace CsharpHelpers.Logging
     {
         public static IList<ILogger> Loggers = new List<ILogger>();
         private static readonly IList<IMessageProvider> DataProviders = new List<IMessageProvider>();
-        private static readonly object Locker = new object();
+        public static readonly object Locker = new object();
 
         static Logger()
         {

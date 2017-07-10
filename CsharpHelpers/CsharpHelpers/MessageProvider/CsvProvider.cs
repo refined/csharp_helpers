@@ -6,7 +6,7 @@ namespace CsharpHelpers.MessageProvider
 {
     public class CsvProvider : IMessageProvider
     {
-        public const string Separator = ";";
+        public const string SEPARATOR = ";";
         public string FileName { get; set; }
         public string FilePath { get; set; }
 
@@ -21,8 +21,7 @@ namespace CsharpHelpers.MessageProvider
         {
             lock (_locker)
             {
-                File.AppendAllText(FilePath, message);
-                File.AppendAllText(FilePath, Environment.NewLine);
+                File.AppendAllText(FilePath, message + Environment.NewLine);
             }
         }
 
@@ -30,8 +29,7 @@ namespace CsharpHelpers.MessageProvider
         {
             lock (_locker)
             {
-                File.AppendAllText(FilePath, String.Join(Separator, cells));
-                File.AppendAllText(FilePath, Environment.NewLine);
+                File.AppendAllText(FilePath, string.Join(SEPARATOR, cells, Environment.NewLine));
             }
         }
 
@@ -63,7 +61,7 @@ namespace CsharpHelpers.MessageProvider
             {
                 string line;
                 int i = 0;
-                var separator = Separator[0];
+                var separator = SEPARATOR[0];
                 while ((line = reader.ReadLine()) != null)
                 {
                     string[] parts = line.Split(separator);
