@@ -11,6 +11,8 @@ namespace CsharpHelpers.Logging
     {
         public static IList<ILogger> Loggers = new List<ILogger>();
         private static readonly IList<IMessageProvider> DataProviders = new List<IMessageProvider>();
+        private static readonly object Locker = new object();
+
         static Logger()
         {
             var logProvider = new LogCsvProvider();
@@ -26,18 +28,21 @@ namespace CsharpHelpers.Logging
         {
             var output = new List<string> { DateTime.Now.ToString(CultureInfo.InvariantCulture), message };
             if (data != null) output.AddRange(data);
-
-            foreach (var logger in Loggers)
+            lock (Locker)
             {
-                logger.AddMessage(output.ToArray());
+                foreach (var logger in Loggers)
+                {
+                    logger.AddMessage(output.ToArray());
+                }
             }
         }
 
         public static void Add(string message, object data)
         {
-            if (data is string)
+            var s = data as string;
+            if (s != null)
             {
-                Add(message, new[] { (string)data });
+                Add(message, new[] { s });
             }
             else if (data != null)
             {
@@ -57,13 +62,28 @@ namespace CsharpHelpers.Logging
         public static void AddException(Exception e)
         {
             Add("EXCEPTION " + e.GetType(), e.Message);
-            foreach (var logger in Loggers)
+            lock (Locker)
             {
-                if (e.InnerException != null)
+                foreach (var logger in Loggers)
                 {
-                    logger.AddException(e.InnerException.Message);
+                    if (e.InnerException != null)
+                    {
+                        logger.AddException(e.InnerException.Message);
+                    }
+                    logger.AddException(e.StackTrace);
                 }
-                logger.AddException(e.StackTrace);
+            }
+        }
+
+        public static void ClearLogs()
+        {
+            lock (Locker)
+            {
+                foreach (var logger in Loggers)
+                {
+                    var csvProvider = logger.Provider as CsvProvider;
+                    csvProvider?.Clear();
+                }
             }
         }
 
@@ -71,7 +91,5 @@ namespace CsharpHelpers.Logging
         {
             return (T)DataProviders.FirstOrDefault(p => p is T);
         }
-
-     
     }
 }
