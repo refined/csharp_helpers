@@ -29,7 +29,7 @@ namespace CsharpHelpers.MessageProvider
         {
             lock (_locker)
             {
-                File.AppendAllText(FilePath, string.Join(SEPARATOR, cells, Environment.NewLine));
+                File.AppendAllText(FilePath, string.Join(SEPARATOR, cells) + Environment.NewLine);
             }
         }
 
