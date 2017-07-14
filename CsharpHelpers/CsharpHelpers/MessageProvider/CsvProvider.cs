@@ -7,9 +7,9 @@ namespace CsharpHelpers.MessageProvider
     public class CsvProvider : IMessageProvider
     {
         public const string SEPARATOR = ";";
+        public const string EXTENSION = ".csv";
         public string FileName { get; set; }
         public string FilePath { get; set; }
-
         private readonly object _locker = new object();
 
         public CsvProvider(string fileName)
@@ -35,23 +35,49 @@ namespace CsharpHelpers.MessageProvider
 
         public void Clear()
         {
-            try
-            {
-                File.WriteAllText(FilePath, string.Empty);
-            }
-            catch (Exception)
+            lock (_locker)
             {
                 try
                 {
-                    if (File.Exists(FilePath))
-                    {
-                        File.Delete(FilePath);
-                    }
+                    Copy();
+                    File.WriteAllText(FilePath, string.Empty);
                 }
                 catch (Exception)
                 {
+                    try
+                    {
+                        if (File.Exists(FilePath))
+                        {
+                            Copy();
+                            File.Delete(FilePath);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Add("Exception: cant clear log");
+                    }
                 }
             }
+        }
+
+        public string Copy(string destination = null)
+        {
+            if (destination == null)
+            {
+                destination = FilePath.Remove(FilePath.Length - EXTENSION.Length) 
+                    + "_" + DateTime.Now.ToShortDateString() + EXTENSION;
+            }
+
+            try
+            {
+                File.Copy(FilePath, destination);
+            }
+            catch (Exception e)
+            {
+                Add("Exception: cant copy file: " + e.Message);
+            }
+
+            return destination;
         }
 
         public Dictionary<int, string[]> Read()

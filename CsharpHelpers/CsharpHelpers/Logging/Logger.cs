@@ -12,6 +12,7 @@ namespace CsharpHelpers.Logging
         public static IList<ILogger> Loggers = new List<ILogger>();
         private static readonly IList<IMessageProvider> DataProviders = new List<IMessageProvider>();
         public static readonly object Locker = new object();
+        public static TimeSpan ThrottleTime { get; set; } = TimeSpan.FromSeconds(1);
 
         static Logger()
         {
@@ -23,7 +24,7 @@ namespace CsharpHelpers.Logging
             DataProviders.Add(consoleProvider);
             Loggers.Add(new ConsoleLogger(consoleProvider));
         }
-
+        
         public static void Add(string message, string[] data = null)
         {
             var output = new List<string> { DateTime.Now.ToString(CultureInfo.InvariantCulture), message };
@@ -86,6 +87,20 @@ namespace CsharpHelpers.Logging
                 }
             }
         }
+
+        private static DateTime _lastMessageTime;
+        public static void AddThrottle(string message, string[] data = null)
+        {
+            lock (Locker)
+            {
+                if (DateTime.Now > _lastMessageTime.Add(ThrottleTime))
+                {
+                    Add(message, data);
+                    _lastMessageTime = DateTime.Now;
+                }
+            }
+        }
+
 
         public static T GetProvider<T>() where T : IMessageProvider
         {
