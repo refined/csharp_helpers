@@ -7,6 +7,7 @@ namespace CsharpHelpers.Logging
         void AddMessage(string message);
         void AddMessage(string[] messages);
         void AddException(string message);
+        string GetFullText();
 
         IMessageProvider Provider { get; }
     }

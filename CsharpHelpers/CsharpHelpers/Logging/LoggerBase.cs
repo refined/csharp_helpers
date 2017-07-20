@@ -4,6 +4,11 @@ namespace CsharpHelpers.Logging
 {
     public abstract class LoggerBase : ILogger
     {
+        public string GetFullText()
+        {
+            return Provider.GetFullText();
+        }
+
         public IMessageProvider Provider { get; }
 
         protected LoggerBase(IMessageProvider provider)

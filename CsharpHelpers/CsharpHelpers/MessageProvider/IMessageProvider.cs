@@ -7,5 +7,7 @@ namespace CsharpHelpers.MessageProvider
         void Add(string message);
         void Add(IEnumerable<string> messages);
         void Clear();
+
+        string GetFullText();
     }
 }

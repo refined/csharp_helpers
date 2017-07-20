@@ -11,7 +11,7 @@ namespace CsharpHelpers.MessageProvider
         public void Add(string message)
         {
             Messages.Add(message);
-            if (Messages.Count > 100)
+            if (Messages.Count > 200)
             {
                 Messages.Remove(Messages.First());
             }
@@ -25,6 +25,11 @@ namespace CsharpHelpers.MessageProvider
         public void Clear()
         {
             Messages.Clear();
+        }
+
+        public string GetFullText()
+        {
+            return string.Join("\n", Messages);
         }
     }
 }

@@ -39,8 +39,11 @@ namespace CsharpHelpers.MessageProvider
             {
                 try
                 {
-                    Copy();
-                    File.WriteAllText(FilePath, string.Empty);
+                    var destination = Copy();
+                    if (destination != null)
+                    {
+                        File.WriteAllText(FilePath, string.Empty);
+                    }
                 }
                 catch (Exception)
                 {
@@ -48,8 +51,11 @@ namespace CsharpHelpers.MessageProvider
                     {
                         if (File.Exists(FilePath))
                         {
-                            Copy();
-                            File.Delete(FilePath);
+                            var destination = Copy();
+                            if (destination != null)
+                            {
+                                File.Delete(FilePath);
+                            }
                         }
                     }
                     catch (Exception)
@@ -59,6 +65,15 @@ namespace CsharpHelpers.MessageProvider
                 }
             }
         }
+
+        public string GetFullText()
+        {
+            lock (_locker)
+            {
+                return File.ReadAllText(FilePath);
+            }
+        }
+
 
         public string Copy(string destination = null)
         {
@@ -75,6 +90,7 @@ namespace CsharpHelpers.MessageProvider
             catch (Exception e)
             {
                 Add("Exception: cant copy file: " + e.Message);
+                return null;
             }
 
             return destination;
