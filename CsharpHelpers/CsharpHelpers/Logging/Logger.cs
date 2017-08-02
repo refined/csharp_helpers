@@ -88,7 +88,7 @@ namespace CsharpHelpers.Logging
             }
         }
 
-        private static DateTime _lastMessageTime;
+        private static DateTime _lastMessageTime = DateTime.MinValue;
         public static void AddThrottle(string message, string[] data = null)
         {
             lock (Locker)
