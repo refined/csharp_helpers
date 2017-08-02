@@ -79,8 +79,9 @@ namespace CsharpHelpers.MessageProvider
         {
             if (destination == null)
             {
+                var now = $"{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
                 destination = FilePath.Remove(FilePath.Length - EXTENSION.Length) 
-                    + "_" + DateTime.Now.ToShortDateString() + EXTENSION;
+                    + "_" + now + EXTENSION;
             }
 
             try

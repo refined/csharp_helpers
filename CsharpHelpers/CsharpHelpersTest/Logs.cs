@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using CsharpHelpers.Logging;
 using CsharpHelpers.MessageProvider;
@@ -23,6 +24,17 @@ namespace CsharpHelpersTest
             var provider = Logger.GetProvider<ConsoleProvider>();
             
             Assert.IsTrue(provider.Messages.Count == 3);
+        }
+
+        [TestMethod]
+        public async Task CopyDestinationTest()
+        {
+            var provider = new CsvProvider("TestData/test_log.csv");
+            var destination = provider.Copy();
+
+            Assert.IsNotNull(destination);
+
+            File.Delete(destination);
         }
     }
 }
