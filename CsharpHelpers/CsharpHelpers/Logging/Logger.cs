@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using CsharpHelpers.MessageProvider;
@@ -27,7 +26,7 @@ namespace CsharpHelpers.Logging
         
         public static void Add(string message, string[] data = null)
         {
-            var output = new List<string> { DateTime.Now.ToString(CultureInfo.InvariantCulture), message };
+            var output = new List<string> { $"{DateTime.Now:yyyy_MM_dd_HH_mm_ss}", message };
             if (data != null) output.AddRange(data);
             lock (Locker)
             {

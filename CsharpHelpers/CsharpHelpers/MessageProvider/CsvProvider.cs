@@ -6,7 +6,7 @@ namespace CsharpHelpers.MessageProvider
 {
     public class CsvProvider : IMessageProvider
     {
-        public const string SEPARATOR = ";";
+        public const string SEPARATOR = " ;";
         public const string EXTENSION = ".csv";
         public string FileName { get; set; }
         public string FilePath { get; set; }
