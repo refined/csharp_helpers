@@ -59,6 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto\Encryption.cs" />
+    <Compile Include="Logging\TxtLogger.cs" />
+    <Compile Include="MessageProvider\BaseFileProvider.cs" />
+    <Compile Include="MessageProvider\LogTxtProvider.cs" />
+    <Compile Include="MessageProvider\TxtProvider.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Collection\BindingListExt.cs" />

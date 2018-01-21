@@ -15,9 +15,9 @@ namespace CsharpHelpers.Logging
 
         static Logger()
         {
-            var logProvider = new LogCsvProvider();
+            var logProvider = new LogTxtProvider();
             DataProviders.Add(logProvider);
-            Loggers.Add(new CsvLogger(logProvider));
+            Loggers.Add(new TxtLogger(logProvider));
 
             var consoleProvider = new ConsoleProvider();
             DataProviders.Add(consoleProvider);

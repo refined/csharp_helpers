@@ -2,7 +2,7 @@
 {
     public class LogCsvProvider : CsvProvider
     {
-        public LogCsvProvider() : base("Log.csv")
+        public LogCsvProvider() : base("log.csv")
         {
         }
     }
