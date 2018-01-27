@@ -79,7 +79,7 @@ namespace CsharpHelpers.MessageProvider
         {
             if (destination == null)
             {
-                var now = $"{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
+                var now = $"{DateTime.Now:yyyy_MM_dd__HH_mm_ss}";
                 destination = FilePath.Remove(FilePath.Length - Extension.Length) 
                               + "_" + now + Extension;
             }
