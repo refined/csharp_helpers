@@ -1,7 +1,7 @@
-﻿using CsharpHelpers.Crypto;
+﻿using CsharpHelpers.Standard.Crypto;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CsharpHelpersTest
+namespace CsharpHelpers.Test
 {
     [TestClass]
     public class Crypto
